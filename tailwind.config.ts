@@ -9,8 +9,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        navbarBackground: "#F5F5F5",
+        navbarBorder: "#E5E5E5",
+        black: "#212222",
       },
     },
   },
