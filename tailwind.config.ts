@@ -9,9 +9,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        navbarBackground: "#F5F5F5",
-        navbarBorder: "#E5E5E5",
+        grayBackground: "#F6F6F6",
+        lightGrayBorder: "#E5E5E5",
+        lightGrayBorder2: "#EBEBEB",
+        veryLightGray: "#f6f6f680",
+        darkGrayBackground: "#F5F5F5",
         black: "#212222",
+        lightGray: "#F1F1F1",
+        darkGray: "#D7D7D7",
+        textGray: "#9C9C9C",
+        textDarkGray: "#808080",
+        textDisabled: "#AEAEAE",
       },
     },
   },

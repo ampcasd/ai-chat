@@ -29,7 +29,7 @@ export const NavBar: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center bg-navbarBackground border-r-2 border-navbarBorder h-screen p-5 pt-6">
+    <div className="flex flex-col items-center bg-darkGrayBackground border-r-2 border-lightGrayBorder h-screen p-5 pt-6">
       <Image
         aria-hidden
         src="/logo.svg"
