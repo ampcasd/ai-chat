@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { Provider } from "react-redux";
-import { makeStore, AppStore, persistor } from "../lib/store";
+import { makeStore, AppStore } from "../lib/store";
 import { PersistGate } from "redux-persist/integration/react";
 
 export default function StoreProvider({

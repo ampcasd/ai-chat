@@ -1,7 +1,11 @@
 import { PlusInCircle } from "./icons/PlusInCircle";
 import { useState } from "react";
 
-export const AttachmentButton = () => {
+interface Props {
+  hideText?: boolean;
+}
+
+export const AttachmentButton = ({ hideText = false }: Props) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -11,12 +15,14 @@ export const AttachmentButton = () => {
       onMouseLeave={() => setHovered(false)}
     >
       <PlusInCircle fill={hovered ? "#808080" : "#AEAEAE"} />
-      <div
-        className="ml-3 transition-colors mt-[2px]"
-        style={{ color: hovered ? "#808080" : undefined }}
-      >
-        Attach
-      </div>
+      {!hideText && (
+        <div
+          className="ml-3 transition-colors mt-[2px]"
+          style={{ color: hovered ? "#808080" : undefined }}
+        >
+          Attach
+        </div>
+      )}
     </button>
   );
 };

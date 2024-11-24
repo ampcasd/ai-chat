@@ -23,7 +23,7 @@ export const Switch = ({
   };
 
   return (
-    <div className="relative flex p-2 rounded-full bg-grayBackground">
+    <div className="relative flex p-2 h-[37px] rounded-full bg-grayBackground">
       <div
         className="absolute h-[27px] left-[5px] top-[5px] z-1 bg-white rounded-full transition-transform duration-500 border-lightGrayBorder2 border"
         style={{

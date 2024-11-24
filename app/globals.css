@@ -36,3 +36,17 @@ body {
 .navbar-button.selected::after {
   opacity: 1;
 }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Hide the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d7d7d7; /* Set the color of the thumb */
+  border-radius: 10px;
+}
