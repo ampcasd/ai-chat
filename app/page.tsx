@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import { ChatInput } from "./components/ChatInput";
-import { useAppStore } from "@/lib/hooks";
+import { useAppSelector } from "@/lib/hooks";
+import { ExamplePrompts } from "./components/ExamplePrompts";
 
 export default function Home() {
-  const store = useAppStore();
-  const messages = store.getState().chat.messages;
-  console.log(messages);
+  const messages = useAppSelector((state) => state.chat.messages);
 
+  console.log(messages);
   return (
     <div className="flex flex-col items-center justify-center space-y-10 h-[calc(100vh-2rem)]">
       <Image
@@ -19,6 +19,8 @@ export default function Home() {
       />
 
       <ChatInput />
+
+      <ExamplePrompts />
     </div>
   );
 }

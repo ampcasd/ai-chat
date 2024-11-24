@@ -25,7 +25,7 @@ export const Switch = ({
   return (
     <div className="relative flex p-2 rounded-full bg-grayBackground">
       <div
-        className="absolute h-[27px] left-[5px] top-[5px] z-1 bg-white rounded-full transition-transform duration-300 ease-in-out border-lightGrayBorder2 border"
+        className="absolute h-[27px] left-[5px] top-[5px] z-1 bg-white rounded-full transition-transform duration-500 border-lightGrayBorder2 border"
         style={{
           transform: `translateX(${activeIndex === 0 ? 0 : optionWidth - 2}px)`,
           width: optionWidth + 8,
