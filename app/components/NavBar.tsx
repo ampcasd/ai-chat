@@ -10,6 +10,7 @@ import { HistoryIcon } from "./icons/HistoryIcon";
 import { HomeIcon } from "./icons/HomeIcon";
 import { NavBarButton } from "./NavBarButton";
 import { ProfilePicture } from "./ProfilePicture";
+import { StartChatButton } from "./StartChatButton";
 
 export const NavBar: React.FC = () => {
   const router = useRouter();
@@ -20,25 +21,24 @@ export const NavBar: React.FC = () => {
     {
       path: "/",
       icon: HomeIcon,
+      label: "Home",
     },
     {
       path: "/history",
       icon: HistoryIcon,
+      label: "History",
     },
     {
       path: "/web",
       icon: GlobeIcon,
+      label: "Discover",
     },
   ];
 
-  const startNewChat = () => {
-    store.dispatch(chatSlice.actions.archiveMessages());
-    router.push("/");
-  };
-
   return (
-    <div className="flex flex-col items-center bg-darkGrayBackground border-r-2 border-lightGrayBorder h-screen p-5 pt-6">
+    <div className="flex md:flex-col items-center bg-darkGrayBackground border-r-2 border-lightGrayBorder md:h-screen p-5 pt-0 md:pt-6">
       <Image
+        className="hidden md:block"
         onClick={() => store.dispatch(chatSlice.actions.clearMessages())}
         aria-hidden
         src="/logo.svg"
@@ -47,32 +47,33 @@ export const NavBar: React.FC = () => {
         height={38}
       />
 
-      <div className="flex flex-col space-y-10 my-auto">
+      <div className="flex md:flex-col md:space-y-10 w-full justify-between mx-4 md:mx-0 my-auto">
         {navBarItems.map((item) => (
           <NavBarButton
             key={item.path}
             onClick={() => router.push(item.path)}
             isSelected={path === item.path}
           >
-            <item.icon
-              fill={
-                path === item.path ? ICON_COLOR.SELECTED : ICON_COLOR.NEUTRAL
-              }
-            />
+            <div className="flex flex-col items-center">
+              <item.icon
+                fill={
+                  path === item.path ? ICON_COLOR.SELECTED : ICON_COLOR.NEUTRAL
+                }
+              />
+              <div
+                className={`md:hidden text-md mt-[2px] ${
+                  path === item.path ? "text-black" : "text-neutralGray"
+                }`}
+              >
+                {item.label}
+              </div>
+            </div>
           </NavBarButton>
         ))}
       </div>
 
-      <div className="flex flex-col items-center space-y-12 absolute bottom-5">
-        <button onClick={startNewChat}>
-          <Image
-            aria-hidden
-            src="/add.svg"
-            alt="Plus icon"
-            width={28}
-            height={28}
-          />
-        </button>
+      <div className="flex flex-col items-center space-y-12 absolute bottom-5 hidden md:block">
+        <StartChatButton />
         <ProfilePicture />
       </div>
     </div>

@@ -1,5 +1,5 @@
-import { PlusInCircle } from "./icons/PlusInCircle";
 import { useState } from "react";
+import { PlusInCircle } from "./icons/PlusInCircle";
 
 interface Props {
   hideText?: boolean;
@@ -10,7 +10,7 @@ export const AttachmentButton = ({ hideText = false }: Props) => {
 
   return (
     <button
-      className="flex items-center text-textGray"
+      className="flex items-center text-textGray h"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

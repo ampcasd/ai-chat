@@ -20,6 +20,7 @@ export default {
         textGray: "#9C9C9C",
         textDarkGray: "#808080",
         textDisabled: "#AEAEAE",
+        neutralGray: "#A9A9A9",
       },
     },
   },

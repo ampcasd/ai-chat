@@ -25,11 +25,13 @@ export function ExamplePrompts() {
   };
 
   return (
-    <div className={`flex gap-2 w-full max-w-[808px]`}>
+    <div
+      className={`grid grid-cols-2 md:grid-cols-3 gap-2 w-full mx-auto max-w-[413px] md:max-w-[808px]`}
+    >
       {examples.map((example) => (
         <button
           key={example}
-          className="flex-1 p-4 bg-grayBackground rounded-lg text-center text-lg border border-lightGrayBorder hover:bg-veryLightGray active:bg-lightGray transition-colors duration-200"
+          className="flex-1 p-3 md:p-4 bg-grayBackground rounded-md md:rounded-lg text-center text-sm md:text-lg border border-lightGrayBorder hover:bg-veryLightGray active:bg-lightGray transition-colors duration-200"
           onClick={() => handleExampleClick(example)}
         >
           {example}

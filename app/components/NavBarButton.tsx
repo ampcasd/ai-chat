@@ -1,5 +1,6 @@
+"use client";
 import { PropsWithChildren } from "react";
-import Image from "next/image";
+import { useIsMobileView } from "../hooks/useIsMobileView";
 
 interface Props {
   isSelected: boolean;
@@ -11,9 +12,17 @@ export const NavBarButton: React.FC<PropsWithChildren<Props>> = ({
   isSelected,
   onClick,
 }) => {
+  const isMobileView = useIsMobileView();
+
   return (
-    <div className={`navbar-button ${isSelected ? "selected" : ""}`}>
-      <button onClick={onClick}>{children}</button>
+    <div
+      className={`${isMobileView ? "mobile-navbar-button" : "navbar-button"} ${
+        isSelected ? "selected" : ""
+      }`}
+    >
+      <button className="w-full h-full" onClick={onClick}>
+        {children}
+      </button>
     </div>
   );
 };

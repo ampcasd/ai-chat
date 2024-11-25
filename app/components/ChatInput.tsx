@@ -11,7 +11,7 @@ export function ChatInput(): JSX.Element {
 
   return (
     <div className={`flex w-full max-w-[${INPUT_WIDTH}px]`}>
-      <div className={`flex bg-lightGray p-3 w-full rounded-3xl mx-24`}>
+      <div className={`flex bg-lightGray p-3 w-full rounded-3xl mx-4 md:mx-24`}>
         <div
           className={`w-full border-darkGray border-2 bg-white rounded-xl pl-5 pr-2 py-3`}
         >
@@ -31,7 +31,7 @@ export function ChatInput(): JSX.Element {
               />
             </div>
 
-            <button className="w-[55px] h-[55px] rounded-full border border-lightGrayBorder flex items-center justify-center mb-[-5px]  hover:bg-veryLightGray active:bg-darkGrayBackground transition-colors duration-200">
+            <button className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] rounded-full border border-lightGrayBorder flex items-center justify-center mb-[-5px]  hover:bg-veryLightGray active:bg-darkGrayBackground transition-colors duration-200">
               <Image
                 aria-hidden
                 src="/arrow-right.svg"

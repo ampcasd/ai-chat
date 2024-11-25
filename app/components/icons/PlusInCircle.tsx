@@ -8,9 +8,10 @@ interface Props {
 
 export const PlusInCircle: React.FC<Props> = ({
   fill = ICON_COLOR.NEUTRAL,
-  size = 25,
+  size,
 }) => (
   <svg
+    className={!size ? "h-5 md:h-6" : ""}
     width={size}
     height={size}
     viewBox={`0 0 45 45`}

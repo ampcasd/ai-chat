@@ -37,7 +37,9 @@ export function CompactChatInput(): JSX.Element {
 
   return (
     <div className={`flex w-full max-w-[${INPUT_WIDTH}px]`}>
-      <div className={`flex bg-lightGray p-3 w-full rounded-full mx-24`}>
+      <div
+        className={`flex bg-lightGray p-3 w-full rounded-full mx-4 md:mx-24`}
+      >
         <div
           className={`w-full border-darkGray border-2 bg-white rounded-full pl-5 pr-2 py-3`}
         >

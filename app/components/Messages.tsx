@@ -20,9 +20,9 @@ export function Messages({ messages }: Props) {
       }}
     >
       <div className="flex-1" />
-      <div className="flex flex-col space-y-12 px-4 py-2">
+      <div className="flex flex-col space-y-12 px-4 py-2 mb-6">
         {messages.slice(1).map((message: Message) => (
-          <div key={message.id} className={`flex mx-24`}>
+          <div key={message.id} className={`flex mx-4 md:mx-24`}>
             <div className="relative right-4">
               <div className="w-[40px] h-[40px]">
                 <MessageAvatar role={message.role} />
