@@ -8,7 +8,7 @@ export const loggerMiddleware =
   (next: (arg0: any) => any) =>
   (action: any) => {
     const previousState = storeAPI.getState();
-    let result = next(action);
+    const result = next(action);
     const reduxPersistActions = ["persist/REHYDRATE", "persist/PERSIST"];
 
     if (

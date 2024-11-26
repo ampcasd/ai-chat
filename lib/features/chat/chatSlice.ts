@@ -44,9 +44,6 @@ export const chatSlice = createSlice({
       state.fetchStatus = { status: FetchStatus.IDLE };
     },
     archiveMessages: (state) => {
-      if (!state.history) {
-        state.history = [];
-      }
       if (state.messages.length) {
         state.history.push(state.messages);
         state.messages = [];
@@ -54,11 +51,16 @@ export const chatSlice = createSlice({
       state.fetchStatus = { status: FetchStatus.IDLE };
     },
     bringBackThread: (state, action: PayloadAction<Message[]>) => {
+      // Add the current messages to the history
       state.history.push(state.messages);
+      // Place archived messages into current conversation slot
       state.messages = action.payload;
-      state.history = state.history.filter(
-        (messages) => messages[0].id !== action.payload[0].id
-      );
+      // Remove the archived thread from the history to avoid duplicates
+      if (action.payload.length > 0) {
+        state.history = state.history.filter(
+          (messages) => messages[0]?.id !== action.payload[0]?.id
+        );
+      }
     },
     setStatus: (state, action: PayloadAction<FetchStatusState>) => {
       state.fetchStatus = action.payload;
