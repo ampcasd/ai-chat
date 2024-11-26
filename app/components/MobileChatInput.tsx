@@ -1,9 +1,7 @@
 "use client";
-import { chatSlice } from "@/lib/features/chat/chatSlice";
-import { useAppStore } from "@/lib/hooks";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { ChatRole } from "../enums/chatRole.enum";
+import { useChatSubmit } from "../hooks/useChatSubmit";
 import { AttachmentButton } from "./AttachmentButton";
 import { Switch } from "./Switch";
 
@@ -11,28 +9,9 @@ export function MobileChatInput(): JSX.Element {
   const [selectedModel, setSelectedModel] = useState("4s-mini");
   const [message, setMessage] = useState("");
 
-  const store = useAppStore();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const submit = () => {
-    if (message.trim() === "") {
-      return;
-    }
-
-    store.dispatch(
-      chatSlice.actions.addMessage({
-        role: ChatRole.USER,
-        content: message,
-        id: crypto.randomUUID(),
-        timestamp: Date.now(),
-      })
-    );
-
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "44px";
-    }
-    setMessage("");
-  };
+  const submit = useChatSubmit(setMessage, textareaRef);
 
   return (
     <div
@@ -55,7 +34,7 @@ export function MobileChatInput(): JSX.Element {
           }}
           onKeyUp={(e) => {
             if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-              submit();
+              submit(message);
             }
           }}
         />
@@ -67,11 +46,11 @@ export function MobileChatInput(): JSX.Element {
           onChange={setSelectedModel}
         />
 
-        <button onClick={submit}>
+        <button onClick={() => submit(message)}>
           <div className="flex items-center justify-center h-[40px] w-[40px] rounded-full border border-lightGrayBorder hover:bg-veryLightGray active:bg-darkGrayBackground transition-colors duration-200">
             <Image
               aria-hidden
-              src="/arrow-right.svg"
+              src="/icons/arrow-right.svg"
               alt="Send icon"
               width={16}
               height={16}

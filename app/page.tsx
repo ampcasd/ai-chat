@@ -17,7 +17,6 @@ export default function Home() {
 
   useChatObserver();
 
-  console.log(messages);
   return (
     <div className="flex flex-col items-center justify-center h-[calc(100vh-7rem)] md:h-[calc(100vh-3rem)]">
       {messages.length > 0 ? (
@@ -32,7 +31,7 @@ export default function Home() {
           <Image
             className="mx-auto"
             aria-hidden
-            src="/logo.svg"
+            src="/icons/logo.svg"
             alt="Logo"
             width={80}
             height={80}

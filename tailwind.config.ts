@@ -22,6 +22,15 @@ export default {
         textDisabled: "#AEAEAE",
         neutralGray: "#A9A9A9",
       },
+      keyframes: {
+        gradient: {
+          "0%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
+      },
+      animation: {
+        gradient: "gradient 4s linear infinite",
+      },
     },
   },
   plugins: [],

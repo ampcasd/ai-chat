@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { NavBar } from "./components/NavBar";
+import { plusJakartaSans } from "./fonts";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "Sentient",
@@ -28,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col md:flex-row text-textDarkGray`}
+        className={`${plusJakartaSans.className} antialiased flex flex-col md:flex-row text-textDarkGray font-[${plusJakartaSans.className}]`}
       >
         <StoreProvider>
           {/* On mobile: children first, navbar last. On desktop: navbar first, children last */}

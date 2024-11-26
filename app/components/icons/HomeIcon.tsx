@@ -1,4 +1,4 @@
-import { ICON_COLOR } from "@/app/enums/iconColor.enum";
+import { ICON_COLOR } from "@/lib/enums/iconColor.enum";
 import React from "react";
 
 interface HomeIconProps {

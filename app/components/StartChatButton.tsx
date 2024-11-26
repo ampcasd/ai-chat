@@ -18,7 +18,7 @@ export function StartChatButton() {
     <button onClick={startNewChat}>
       <Image
         aria-hidden
-        src="/add.svg"
+        src="/icons/add.svg"
         alt="Plus icon"
         width={isMobile ? 22 : 28}
         height={isMobile ? 22 : 28}

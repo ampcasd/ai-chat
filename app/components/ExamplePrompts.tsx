@@ -1,7 +1,7 @@
 import { chatSlice } from "@/lib/features/chat/chatSlice";
 import { useAppStore } from "@/lib/hooks";
-import { ChatRole } from "../enums/chatRole.enum";
-import { LikeStatus } from "../enums/likeStatus.enum";
+import { ChatRole } from "../../lib/enums/chatRole.enum";
+import { LikeStatus } from "../../lib/enums/likeStatus.enum";
 
 const examples = [
   "What's the meaning of life?",

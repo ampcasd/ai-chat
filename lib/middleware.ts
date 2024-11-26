@@ -15,7 +15,7 @@ export const loggerMiddleware =
       process.env.NODE_ENV !== "production" &&
       !reduxPersistActions.includes(action.type)
     ) {
-      console.log(
+      console.info(
         "Action!",
         "\nprevious state:",
         previousState,

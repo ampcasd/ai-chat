@@ -4,7 +4,7 @@ import { useAppStore } from "@/lib/hooks";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
-import { ICON_COLOR } from "../enums/iconColor.enum";
+import { ICON_COLOR } from "../../lib/enums/iconColor.enum";
 import { GlobeIcon } from "./icons/GlobeIcon";
 import { HistoryIcon } from "./icons/HistoryIcon";
 import { HomeIcon } from "./icons/HomeIcon";
@@ -36,12 +36,12 @@ export const NavBar: React.FC = () => {
   ];
 
   return (
-    <div className="flex md:flex-col items-center bg-darkGrayBackground border-r-2 border-lightGrayBorder md:h-screen p-5 pt-0 md:pt-6">
+    <div className="flex md:flex-col items-center bg-darkGrayBackground border-r-2 border-lightGrayBorder md:w-[80px] md:h-screen p-5 pt-0 md:pt-6">
       <Image
         className="hidden md:block"
         onClick={() => store.dispatch(chatSlice.actions.clearMessages())}
         aria-hidden
-        src="/logo.svg"
+        src="/icons/logo.svg"
         alt="Logo"
         width={38}
         height={38}

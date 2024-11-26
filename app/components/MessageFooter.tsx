@@ -1,21 +1,27 @@
-import { chatSlice, Message } from "@/lib/features/chat/chatSlice";
+import { chatSlice } from "@/lib/features/chat/chatSlice";
 import { useAppStore } from "@/lib/hooks";
 import Image from "next/image";
 import { useState } from "react";
-import { ICON_COLOR } from "../enums/iconColor.enum";
-import { LikeStatus } from "../enums/likeStatus.enum";
+import { ICON_COLOR } from "../../lib/enums/iconColor.enum";
+import { LikeStatus } from "../../lib/enums/likeStatus.enum";
 import { LikeIcon } from "./icons/LikeIcon";
 
 interface Props {
-  message: Message;
+  messageContent: string;
+  messageId: string;
+  likeStatus: LikeStatus;
 }
 
-export function MessageFooter({ message }: Props): JSX.Element {
+export function MessageFooter({
+  messageContent,
+  messageId,
+  likeStatus,
+}: Props): JSX.Element {
   const store = useAppStore();
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(message.content);
+    navigator.clipboard.writeText(messageContent);
     setCopied(true);
     setTimeout(() => {
       setCopied(false);
@@ -25,18 +31,24 @@ export function MessageFooter({ message }: Props): JSX.Element {
   return (
     <div className="flex justify-between">
       <button className="flex" onClick={copyToClipboard}>
-        <Image aria-hidden src="/copy.svg" alt="Logo" width={20} height={20} />
+        <Image
+          aria-hidden
+          src="/icons/copy.svg"
+          alt="Logo"
+          width={20}
+          height={20}
+        />
         <span className="ml-2">{copied ? "Copied!" : "Copy"}</span>
       </button>
       <div className="flex space-x-2">
         <button
           onClick={() =>
-            store.dispatch(chatSlice.actions.likeMessage(message.id))
+            store.dispatch(chatSlice.actions.likeMessage(messageId))
           }
         >
           <LikeIcon
             fill={
-              message.liked === LikeStatus.LIKED
+              likeStatus === LikeStatus.LIKED
                 ? ICON_COLOR.SELECTED
                 : ICON_COLOR.NEUTRAL
             }
@@ -44,12 +56,12 @@ export function MessageFooter({ message }: Props): JSX.Element {
         </button>
         <button
           onClick={() =>
-            store.dispatch(chatSlice.actions.dislikeMessage(message.id))
+            store.dispatch(chatSlice.actions.dislikeMessage(messageId))
           }
         >
           <LikeIcon
             fill={
-              message.liked === LikeStatus.DISLIKED
+              likeStatus === LikeStatus.DISLIKED
                 ? ICON_COLOR.SELECTED
                 : ICON_COLOR.NEUTRAL
             }

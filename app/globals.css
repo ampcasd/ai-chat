@@ -49,6 +49,10 @@ body {
   opacity: 1;
 }
 
+.nunito {
+  font-family: var(--font-nunito-sans);
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
@@ -61,4 +65,23 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #d7d7d7; /* Set the color of the thumb */
   border-radius: 10px;
+}
+
+.loading-text-gradient {
+  background: linear-gradient(
+    to right,
+    #aeaeae,
+    #d7d7d7,
+    #9c9c9c,
+    #212222,
+    #aeaeae,
+    #d7d7d7,
+    #9c9c9c,
+    #212222,
+    #aeaeae,
+    #d7d7d7,
+    #9c9c9c
+  );
+  background-size: 500%;
+  background-clip: text;
 }

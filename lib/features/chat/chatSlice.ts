@@ -1,7 +1,8 @@
-import { ChatRole } from "@/app/enums/chatRole.enum";
-import { FetchStatus } from "@/app/enums/fetchStatus.enum";
-import { LikeStatus } from "@/app/enums/likeStatus.enum";
+import { ChatRole } from "@/lib/enums/chatRole.enum";
+import { FetchStatus } from "@/lib/enums/fetchStatus.enum";
+import { LikeStatus } from "@/lib/enums/likeStatus.enum";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { FetchStatusState } from "./chatSlice.types";
 
 export interface Message {
   id: string;
@@ -13,14 +14,14 @@ export interface Message {
 
 interface ChatState {
   messages: Message[];
-  messageHistory: Message[][];
-  fetchStatus: FetchStatus;
+  history: Message[][];
+  fetchStatus: FetchStatusState;
 }
 
 const initialState: ChatState = {
   messages: [],
-  messageHistory: [],
-  fetchStatus: FetchStatus.IDLE,
+  history: [],
+  fetchStatus: { status: FetchStatus.IDLE },
 };
 
 export const chatSlice = createSlice({
@@ -28,18 +29,38 @@ export const chatSlice = createSlice({
   initialState,
   reducers: {
     addMessage: (state, action: PayloadAction<Message>) => {
-      state.messages.push({ ...action.payload });
+      state.messages.push(action.payload);
+    },
+    updateMessage: (state, action: PayloadAction<Message>) => {
+      const existingMessage = state.messages.find(
+        (m) => m.id === action.payload.id
+      );
+      if (existingMessage) {
+        existingMessage.content = action.payload.content;
+      }
     },
     clearMessages: (state) => {
       state.messages = [];
-      state.fetchStatus = FetchStatus.IDLE;
+      state.fetchStatus = { status: FetchStatus.IDLE };
     },
     archiveMessages: (state) => {
-      state.messageHistory.push(state.messages);
-      state.messages = [];
-      state.fetchStatus = FetchStatus.IDLE;
+      if (!state.history) {
+        state.history = [];
+      }
+      if (state.messages.length) {
+        state.history.push(state.messages);
+        state.messages = [];
+      }
+      state.fetchStatus = { status: FetchStatus.IDLE };
     },
-    setStatus: (state, action: PayloadAction<FetchStatus>) => {
+    bringBackThread: (state, action: PayloadAction<Message[]>) => {
+      state.history.push(state.messages);
+      state.messages = action.payload;
+      state.history = state.history.filter(
+        (messages) => messages[0].id !== action.payload[0].id
+      );
+    },
+    setStatus: (state, action: PayloadAction<FetchStatusState>) => {
       state.fetchStatus = action.payload;
     },
     likeMessage: (state, action: PayloadAction<string>) => {

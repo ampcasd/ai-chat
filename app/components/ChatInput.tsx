@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { useChatSubmit } from "../hooks/useChatSubmit";
 import { AttachmentButton } from "./AttachmentButton";
 import { Switch } from "./Switch";
 
@@ -8,6 +9,9 @@ export const INPUT_WIDTH = 1000;
 
 export function ChatInput(): JSX.Element {
   const [selectedModel, setSelectedModel] = useState("4s-mini");
+  const [message, setMessage] = useState("");
+
+  const submit = useChatSubmit(setMessage);
 
   return (
     <div className={`flex w-full max-w-[${INPUT_WIDTH}px]`}>
@@ -18,6 +22,13 @@ export function ChatInput(): JSX.Element {
           <textarea
             className="w-full h-18 text-lg rounded-md resize-none placeholder:text-textDarkGray focus:outline-none"
             placeholder="Ask me anything..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyUp={(e) => {
+              if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                submit(message);
+              }
+            }}
           />
 
           <div className="flex items-end justify-between ">
@@ -31,15 +42,20 @@ export function ChatInput(): JSX.Element {
               />
             </div>
 
-            <button className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] rounded-full border border-lightGrayBorder flex items-center justify-center mb-[-5px]  hover:bg-veryLightGray active:bg-darkGrayBackground transition-colors duration-200">
-              <Image
-                aria-hidden
-                src="/arrow-right.svg"
-                alt="Send icon"
-                width={25}
-                height={25}
-              />
-            </button>
+            <div>
+              <button
+                onClick={() => submit(message)}
+                className="w-[40px] h-[40px] md:w-[55px] md:h-[55px] rounded-full border border-lightGrayBorder flex items-center justify-center mb-[-5px] hover:bg-veryLightGray active:bg-darkGrayBackground transition-colors duration-200"
+              >
+                <Image
+                  aria-hidden
+                  src="/icons/arrow-right.svg"
+                  alt="Send icon"
+                  width={25}
+                  height={25}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>

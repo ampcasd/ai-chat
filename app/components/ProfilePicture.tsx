@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useProfile } from "../hooks/useProfile";
 
 interface Props {
@@ -7,11 +8,13 @@ interface Props {
 
 export const ProfilePicture = ({ size = 32 }: Props) => {
   const profile = useProfile();
+  const router = useRouter();
 
   return (
     <div
-      className="rounded-full border md:border-2 border-black flex items-center justify-center font-bold text-black"
+      className="rounded-full border cursor-pointer md:border-2 border-black flex items-center justify-center font-bold text-black"
       style={{ width: `${size}px`, height: `${size}px` }}
+      onClick={() => router.push("/profile")}
     >
       {profile.image ? (
         <Image
