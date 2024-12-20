@@ -44,6 +44,7 @@ export const useChatObserver = () => {
 
       // config for chunking the response
       // to simulate incremental updates
+      // this is a bit silly, but I wanted to have the typing effect
       const words = aiResponse.split(" ");
       const typingSpeed = 50;
       const totalWords = words.length;
